@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>2-Bit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<form method="post">
+    <input type="text" name="message" placeholder="Input Message">
+    <button type="submit">Send</button>
+</form>
+<form method="post" action="filter">
+    <input type="text" name="message" placeholder="Find By Message">
+    <button type="submit">Find</button>
+</form>
+<div>Message List</div>
+{{#messages}}
+    <div>
+        {{id}}
+        {{text}}
+    </div>
+{{/messages}}
+</body>
+</html>
