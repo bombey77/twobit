@@ -15,7 +15,8 @@ public class Message {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Message() {}
+    public Message() {
+    }
 
     public Message(String message) {
         this.message = message;
@@ -50,7 +51,7 @@ public class Message {
         this.user = user;
     }
 
-    public String printUser() {
+    public String getUserInfo() {
         if (user != null && user.getUserName() != null && user.getSureName() != null) {
             return user.getUserName() + " " + user.getSureName();
         }

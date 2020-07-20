@@ -26,8 +26,15 @@ public class MainController {
     }
 
     @GetMapping
-    public String main(Model model) {
-        model.addAttribute("messages", messageRepo.findAll());
+    public String main(@RequestParam(required = false) String message, Model model) {
+        Iterable<Message> messages;
+        if (message != null && !message.isEmpty()) {
+            messages = messageRepo.findByMessage(message);
+            model.addAttribute("filter", message);
+        } else {
+            messages = messageRepo.findAll();
+        }
+        model.addAttribute("messages", messages);
         return "main";
     }
 
@@ -37,18 +44,6 @@ public class MainController {
             messageRepo.save(new Message(message, user));
         }
         model.addAttribute("messages", messageRepo.findAll());
-        return "main";
-    }
-
-    @PostMapping("/filter")
-    public String findMessage(@RequestParam(required = false) String message, Model model) {
-        Iterable<Message> messages;
-        if (message != null && !message.isEmpty()) {
-            messages = messageRepo.findByMessage(message);
-        } else {
-            messages = messageRepo.findAll();
-        }
-        model.addAttribute("messages", messages);
         return "main";
     }
 }
