@@ -5,13 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<div><a href="login">Log In</a></div>
+<div><a href="/login">Log In</a></div>
+<form method="post" action="/logout">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <button type="submit">Sign Out</button>
+</form>
 <form method="post">
     <input type="text" name="message" placeholder="Input Message">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
     <button type="submit">Send</button>
 </form>
 <form method="post" action="filter">
     <input type="text" name="message" placeholder="Find By Message">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
     <button type="submit">Find</button>
 </form>
 <div>Message List</div>
@@ -19,6 +25,7 @@
     <div>
         {{id}}
         {{message}}
+        {{printUser}}
     </div>
 {{/messages}}
 </body>

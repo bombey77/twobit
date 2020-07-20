@@ -1,8 +1,10 @@
 package com.twobit.controller;
 
 import com.twobit.domain.Message;
+import com.twobit.domain.User;
 import com.twobit.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +32,9 @@ public class MainController {
     }
 
     @PostMapping
-    public String addMessage(@RequestParam String message, Model model) {
-        if (message != null && !message.isEmpty()) {
-            messageRepo.save(new Message(message));
+    public String addMessage(@AuthenticationPrincipal User user, @RequestParam String message, Model model) {
+        if (user != null && message != null && !message.isEmpty()) {
+            messageRepo.save(new Message(message, user));
         }
         model.addAttribute("messages", messageRepo.findAll());
         return "main";
