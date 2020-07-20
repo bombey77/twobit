@@ -1,9 +1,6 @@
 package com.twobit.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Message {
@@ -11,12 +8,13 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String text;
+    @Column(nullable = false)
+    private String message;
 
     public Message() {}
 
-    public Message(String text) {
-        this.text = text;
+    public Message(String message) {
+        this.message = message;
     }
 
     public Long getId() {
@@ -27,11 +25,11 @@ public class Message {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getMessage() {
+        return message;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setMessage(String text) {
+        this.message = text;
     }
 }

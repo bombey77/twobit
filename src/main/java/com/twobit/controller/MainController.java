@@ -42,7 +42,7 @@ public class MainController {
     public String findMessage(@RequestParam(required = false) String message, Model model) {
         Iterable<Message> messages;
         if (message != null && !message.isEmpty()) {
-            messages = messageRepo.findByText(message);
+            messages = messageRepo.findByMessage(message);
         } else {
             messages = messageRepo.findAll();
         }
