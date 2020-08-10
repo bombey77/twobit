@@ -5,12 +5,12 @@
     <div><a href="/login">Log In</a></div>
     <@l.logout />
     <form method="post">
-        <input type="text" name="message" placeholder="Input Message">
+        <input type="text" name="message" placeholder="Input Message"/>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button type="submit">Send</button>
     </form>
     <form method="get">
-        <input type="text" name="message" value="${filter?ifExists}" placeholder="Find By Message">
+        <input type="text" name="message" value="${filter?ifExists}" placeholder="Find By Message"/>
         <button type="submit">Find</button>
     </form>
     <div><b>Message List:</b></div>
